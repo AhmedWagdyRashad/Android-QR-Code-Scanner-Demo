@@ -112,6 +112,14 @@ class ScannerActivity : AppCompatActivity() {
         super.onPause()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (QRCode.isNotEmpty() && QRCode != null){
+            outState.putString("QR_Code",QRCode)
+        }
+    }
+
+    // Permissions Methods
 
     private fun setupPermissions() {
         val permission = ContextCompat.checkSelfPermission(
@@ -150,14 +158,6 @@ class ScannerActivity : AppCompatActivity() {
 
                 }
             }
-        }
-    }
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        if (QRCode.isNotEmpty() && QRCode != null){
-            outState.putString("QR_Code",QRCode)
         }
     }
 
